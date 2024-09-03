@@ -1,5 +1,8 @@
 import { Text } from "react-native";
 
+interface Props {
+  message: string;
+}
 
 /**
  * Les components React sont par convention en PascalCase avec
@@ -7,9 +10,9 @@ import { Text } from "react-native";
  * doit forcément être utilisé par un autre component ou "page"
  * pour pouvoir être affiché.
  */
-export default function MonComponent() {
-
+export default function MonComponent({message}:Props) {
+  
   return (
-      <Text>Mon Component nul</Text>
+    <Text>Mon Component nul : {message}</Text>
     );
 }

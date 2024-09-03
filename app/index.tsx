@@ -41,7 +41,8 @@ export default function index() {
       {list.map((item, index) => <Text key={index}>{item}</Text>)}
 
 
-      <MonComponent />
+      <MonComponent message='chaîne de caractère' />
+      <MonComponent message={name} />
       <Counter />
 
        {/* <Text onPress={changeName}>{name}</Text> */}

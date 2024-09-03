@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 
 
 
@@ -23,7 +23,9 @@ export default function ListNames() {
       <TextInput value={name} onChange={event => setName(event.nativeEvent.text)}
         onSubmitEditing={addName} />
       <Button title="Add" onPress={addName} />
-      {names.map((item, index) => <Text key={index}>{item}</Text>)}
+      {/* {names.map((item, index) => <Text key={index}>{item}</Text>)} */}
+      {/* La FlatList aura des fonctions supplémentaires liées au scroll/refresh et autres */}
+      <FlatList data={names} renderItem={data => <Text>{data.item}</Text>} />
 
     </View>
   )

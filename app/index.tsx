@@ -31,6 +31,7 @@ export default function index() {
   return (
     <View>
       <Link href="/list">To List</Link>
+      <Link href="/dog">To Dog</Link>
       <Text onPress={() => setName('Autre nom')}>{name}</Text>
 
       <TextInput value={name} onChange={(event) => setName(event.nativeEvent.text)} />

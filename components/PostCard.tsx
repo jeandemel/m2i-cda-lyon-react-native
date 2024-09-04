@@ -1,18 +1,18 @@
-import { Dog } from "@/entities";
+import { Post } from "@/entities";
 import { StyleSheet, Text, View } from "react-native";
 
 
 
 interface Props {
-  dog: Dog;
+  post: Post;
 }
 
-export default function DogCard({ dog,  }: Props) {
+export default function PostCard({ post,  }: Props) {
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>{dog.name}</Text>
-      <Text style={styles.subtitle}>{dog.breed}</Text>
-      <Text style={styles.info}>{new Date(dog.birthdate).toLocaleDateString()}</Text>
+      <Text style={styles.title}>{post.title}</Text>
+      <Text style={styles.subtitle}>{post.userId}</Text>
+      <Text>{post.body}</Text>
     </View>
   );
 }
@@ -35,7 +35,4 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color:'grey'
   },
-  info: {
-    textAlign: 'right'
-  }
 })

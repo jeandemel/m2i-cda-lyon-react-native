@@ -30,6 +30,7 @@ export default function index() {
 
   return (
     <View>
+      <Link href="/sensors">To Sensors</Link>
       <Link href="/list">To List</Link>
       <Link href="/dog">To Dog</Link>
       <Text onPress={() => setName('Autre nom')}>{name}</Text>

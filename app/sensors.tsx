@@ -1,6 +1,7 @@
-import { SafeAreaView, Text, StyleSheet, View } from "react-native";
+import { SafeAreaView, Text, StyleSheet, View, Image, Button } from "react-native";
 import {DeviceMotion} from 'expo-sensors'
 import { useEffect, useState } from "react";
+import { requestCameraPermissionsAsync,launchCameraAsync,MediaTypeOptions, launchImageLibraryAsync} from 'expo-image-picker'
 
 
 
@@ -11,19 +12,39 @@ export default function sensors() {
     beta: 0,
     gamma:0
   });
+  const [image, setImage] = useState<string>();
 
   useEffect(() => {
+    requestCameraPermissionsAsync();
     const sub = DeviceMotion.addListener(data => setRotation({...data.rotation}));
     
     return () => sub.remove();
   }, []);
 
+  async function takePicture() {
+    try {
+      
+      const result = await launchCameraAsync({
+        mediaTypes: MediaTypeOptions.Images
+      });
+      if (result.assets && result.assets[0]) {
+        setImage(result.assets[0].uri);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    
+  }
+
 
   return (
     <SafeAreaView>
       <Text>alpha : {rotation.alpha}, beta: {rotation.beta}, gamma: {rotation.gamma}</Text>
-
-      <View style={{...styles.square, left: 100+rotation.gamma*100, top: 300+rotation.beta*150}} />
+      {image ? 
+        <Image source={{ uri: image }} style={{ ...styles.square, left: 100 + rotation.gamma * 100, top: 300 + rotation.beta * 150 }} />    
+        :
+        <Button title="Take a picture" onPress={takePicture}/>
+      }
     </SafeAreaView>
   )
 }

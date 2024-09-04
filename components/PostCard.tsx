@@ -1,18 +1,20 @@
 import { Post } from "@/entities";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 
 
 interface Props {
   post: Post;
+  onDelete: (post:Post) => void
 }
 
-export default function PostCard({ post,  }: Props) {
+export default function PostCard({ post,onDelete  }: Props) {
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{post.title}</Text>
       <Text style={styles.subtitle}>{post.userId}</Text>
       <Text>{post.body}</Text>
+      <Button title="Delete" onPress={() => onDelete(post)}/>
     </View>
   );
 }
